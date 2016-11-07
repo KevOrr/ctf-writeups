@@ -1,48 +1,38 @@
 #!/usr/bin/env python3
 
+import math
 from PIL import Image
 
 STRIP_WIDTH = 504
 STRIP_HEIGHT = 8
-SHIFT_PER_LINE = 8
 
-in_img = Image.open('warp_speed.jpg')
-straightened_img = Image.new(in_img.mode, in_img.size)
-collated_img = Image.new(in_img.mode, (in_img.size[0] // 2, in_img.size[1] * 2))
+def unwrap(im, strip_height=STRIP_HEIGHT):
+    out_im = Image.new(im.mode, (int(math.ceil(im.size[0]*im.size[1]/strip_height)), strip_height))
 
+    line = 0
+    while line * strip_height < im.size[1]:
+        rect = im.crop((0, line * strip_height, im.size[0], (line+1) * strip_height))
+        rect.load()
+        out_im.paste(rect, (line * im.size[0], 0, (line+1) * im.size[0], strip_height))
 
-# Straighten out image
-x_shift = 0
-top_edge = 0
-while x_shift < in_img.size[1]:
+        line += 1
 
-    # On the right in challenge, originally left
-    left_strip = in_img.crop((x_shift, top_edge, in_img.size[0], top_edge + STRIP_HEIGHT))
-    left_strip.load()
-    straightened_img.paste(left_strip, (0, top_edge, in_img.size[0] - x_shift, top_edge + STRIP_HEIGHT))
+    return out_im
 
-    # On the left in challenge, orignally right
-    right_strip = in_img.crop((0, top_edge, x_shift, top_edge + STRIP_HEIGHT))
-    right_strip.load()
-    straightened_img.paste(right_strip, (in_img.size[0] - x_shift, top_edge, in_img.size[0], top_edge + STRIP_HEIGHT))
+def collate(im, strip_width=STRIP_WIDTH, strip_height=STRIP_HEIGHT):
+    out_im = Image.new(im.mode, (strip_width, int(math.ceil(im.size[0]/strip_width)) * strip_height))
 
-    x_shift = (x_shift + SHIFT_PER_LINE) % in_img.size[0]
-    top_edge += STRIP_HEIGHT
+    line = 0
+    while line * strip_width < im.size[0]:
+        rect = im.crop((line * strip_width, 0, (line+1) * strip_width, strip_height))
+        rect.load()
+        out_im.paste(rect, (0, line * strip_height, strip_width, (line+1) * strip_height))
 
-# Collate rows
-line = 0
-top_edge = 0
-while top_edge < straightened_img.size[1]:
-    left_edge = 0 if line % 2 == 0 else STRIP_WIDTH
-    strip = straightened_img.crop((left_edge, top_edge, left_edge + STRIP_WIDTH, top_edge + STRIP_HEIGHT))
-    strip.load()
-    collated_img.paste(strip, (0, line * STRIP_HEIGHT, STRIP_WIDTH, (line+1) * STRIP_HEIGHT))
+        line += 1
 
-    line += 1
-    top_edge = top_edge + STRIP_HEIGHT if line % 2 == 0 else top_edge
+    return out_im
 
-# Finally rotate
-final_img = collated_img.rotate(90)
-
-final_img.save('new_im.png')
+image = Image.open('warp_speed.jpg')
+fixed_image = collate(unwrap(image)).rotate(90)
+fixed_image.save('warp_speed_fixed.jpg')
 
