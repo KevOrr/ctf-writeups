@@ -1,6 +1,6 @@
 # Vermatrix Supreme - [100] Crypto
 
-**Kevin Orr** - [USF Whitehatters Computer Security Club (WCSC)](http://www.wcsc.usf.edu/)
+**Kevin Orr** - [USF Whitehatters Computer Security Club (WCSC)](https://ctftime.org/team/315)
 
 
 ### Description

@@ -1,12 +1,12 @@
 # Warp Speed - [150] Forensics
 
-**Kevin Orr** - [USF Whitehatter's Computer Security Club](http://www.wcsc.usf.edu/)
+**Kevin Orr** - [USF Whitehatter's Computer Security Club](https://ctftime.org/team/315)
 
 ### Description
 
 > Our Trump advertising campaign is incredible, it's skyrocketing! It's astronomical! Wait stop!! SLOW DOWN!!!
 > 
-> [warp_speed](https://s3.amazonaws.com/hackthevote/warp_speed.5978d1405660e365872cf72dddc7515603f657f12526bd61e56feacf332cccad.jpg)
+> [warp_speed.jpg](https://s3.amazonaws.com/hackthevote/warp_speed.5978d1405660e365872cf72dddc7515603f657f12526bd61e56feacf332cccad.jpg)
 
 ### Solution
 
