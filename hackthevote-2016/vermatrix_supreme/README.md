@@ -70,4 +70,10 @@ Also:
 
 So our solution is simple: `xor` the end of the key to the result matrix, use that result
 as the new end of the key, and recurse, until reaching C[1], which should equal the IV!
+Running [`sol.py`](sol.py) reverses the encryption and obtains the IV. It then sends this
+IV (encoded as a string of comma-delimited integers) and outputs the flag that the server
+sends back.
 
+### Flag
+
+`flag{IV_wh4t_y0u_DiD_Th3r3}`
