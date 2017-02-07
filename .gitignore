@@ -1,0 +1,8 @@
+.#*
+*.swp
+
+*.py[cow]
+__pycache__
+venv
+
+a.out
