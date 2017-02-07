@@ -2,8 +2,8 @@
 
 ### Description
 
-It lead to memory leakage between servers and clients rending large number
-of private keys accessible. (one word)
+> It lead to memory leakage between servers and clients rending large number
+> of private keys accessible. (one word)
 
 ### Solution
 
