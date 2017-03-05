@@ -1,0 +1,21 @@
+<!doctype html>
+<html>
+<head>
+    <title>Welcome to the Unicorn Secure Storage Facilities!</title>
+    <link rel="stylesheet" href="static/style.css" />
+</head>
+<body>
+<ul>
+    <li><a href="see_unicorn">Visitation</a></li>
+    <li><a href="catch_unicorn">Storage</a></li>
+{% if redirect %}
+    <li style="float:right"><a href="{{redirect}}">Back</a></li>
+{% else %}
+    <li style="float:right"><a href="index.html">Back</a></li>
+{% endif %}
+</ul>
+
+{{content}}
+
+</body>
+</html>

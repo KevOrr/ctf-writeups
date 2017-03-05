@@ -1,0 +1,13 @@
+<div class="container">
+  <h2>Keep your unicorns safe!</h2>
+  <form action="{{ url_for('catch_unicorn') }}" method="POST" name="catch_unicorn_form">
+
+    <label for="name">What is the name of your noble steed? </label>
+    <input type="text" name="name" id="name" placeholder="Mustang McSteed"/>
+
+    <label for="secret">Give me your darkest secret: </label>
+    <input type="text" name="secret" id="secret" placeholder="<much sneaky>"/>
+
+    <button type="submit">Take it, and never let it go!</button>
+  </form>
+</div>

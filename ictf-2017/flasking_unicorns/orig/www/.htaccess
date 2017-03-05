@@ -1,0 +1,4 @@
+RewriteEngine on
+RewriteCond "%{REQUEST_URI}" "!^/?flasking_unicorns.cgi"
+RewriteCond "%{REQUEST_URI}" "!^/?static/"
+RewriteRule "^(.*)$" "flasking_unicorns.cgi/$1" [PT]
