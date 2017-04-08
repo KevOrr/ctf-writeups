@@ -162,7 +162,6 @@ def store_flag(secret, flag):
 @app.route("/index.html", methods=["GET"])
 @app.route("/see_unicorn", methods=["GET"])
 def see_unicorn():
-    # import ipdb; ipdb.set_trace()
     if 'id' in request.args and 'secret' in request.args:
         flag_id = request.args.get('id', '')
         secret = request.args.get('secret', '')
@@ -185,7 +184,6 @@ def see_unicorn():
 
 @app.route("/catch_unicorn", methods=["POST", "GET"])
 def catch_unicorn():
-    # import ipdb; ipdb.set_trace()
     if request.method == 'POST':
         secret = request.form.get('secret', '')
         flag = request.form.get('name', '')
@@ -202,7 +200,6 @@ def catch_unicorn():
 
 @app.route("/nice_try", methods=["GET"])
 def nice_try():
-    # import ipdb; ipdb.set_trace()
     return render_template_string('nice_try.html', redirect=get_safe_redirect())
 
 

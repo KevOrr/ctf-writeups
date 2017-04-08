@@ -1,5 +1,7 @@
 backup/
 captures/
+venv/
+backup.tar*
 config.py
 
 flasking_unicorns/test.html
