@@ -28,7 +28,7 @@ That means we control the range `[rbp-0x30, rbp-0x30+0x18) = [rbp-0x30,
 rbp-0x18)`. The `dword [rbp-0x1c]` covers the range `[rbp-0x1c, rbp-0x18)`,
 which is completely contained inside our buffer!
 
-So, we need `(rbp - 0x30) - (rbp - 0x1c) = 0x14 = 20` bytes of padding followed
+So, we need `(rbp - 0x1c) - (rbp - 0x30) = 0x14 = 20` bytes of padding followed
 by little-endian `0xcaf3baee` (i.e. `'\xee\xba\xf3\xca'`).
 
 See [solve.py](solve.py).
