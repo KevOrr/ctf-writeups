@@ -19,7 +19,7 @@ listed are for quick reference only):
 
 | address        | description                                                                              | C equivalent                                |
 |----------------|------------------------------------------------------------------------------------------|---------------------------------------------|
-| `0x8e0..0x8ef` | string (the flag) is read from stdin into `var_98` (which I'll call `flag`)              | `char flag[0x88]; fgets("%s", flag);        |
+| `0x8e0..0x8ef` | string (the flag) is read from stdin into `var_98` (which I'll call `flag`)              | `char flag[0x88]; fgets("%s", flag);`       |
 | `0x8fb..0x903` | the string length of the flag is taken and stored in `var_a8` (which I'll call `len`)    | `size_t len = strlen(flag);`                |
 | `0x912`        | check if `len` is greater than 32                                                        | `if (len > 0x20) {`                         |
 | `0x92a`        | a counter variable (I'll call it `i`) is initialized to 0                                | `  int i;`                                  |
