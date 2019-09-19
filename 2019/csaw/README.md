@@ -8,6 +8,11 @@
 
 [beleaf](rev/beleaf/beleaf)
 
+Since this is a beginner challenge, I'll go fairly in-depth for this challenge.
+The TLDR is that the array referenced in `main` is a list of indexes into the
+array referenced in `sub_7fa`. If you concatenate all these characters together
+you get the flag.
+
 Inspecting `main()`, we see the framework for a standard reversing challenge.
 
 ![beleaf main function disassembled and lifted in Binary Ninja](images/beleaf_main.png)
