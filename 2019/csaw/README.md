@@ -108,6 +108,18 @@ Once we've learned this, the actual solution is quite simple. See [sol.py](rev/b
 
 ## Pwn
 
+### GOT Milk? - 50 pts
+> GlobalOffsetTable milk?
+> nc pwn.chal.csaw.io 1004
+
+This is a simple format string vuln that can be used to overwrite a GOT address.
+I won't get into too much detail but the GOT entry is at `0x804a044`, and we
+need to change it from `lose` to `win` (both found in `libmylib.so`). Luckily,
+their addresses only differ by one byte, so we can use a format string that
+performs a 1-byte overwrite:
+
+    \x10\xa0\x04\x08%1$133c%7$hhn\\n\\n
+
 ### small_boi - 100 pts
 > you were a baby boi earlier, can you be a small boi now?
 > nc pwn.chal.csaw.io 1002
