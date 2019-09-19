@@ -105,3 +105,43 @@ return values of `get_index`. Each value in this array is simply an index into
 ```
 
 Once we've learned this, the actual solution is quite simple. See [sol.py](rev/beleaf/sol.py)
+
+## Pwn
+
+### small_boi - 100 pts
+> you were a baby boi earlier, can you be a small boi now?
+> nc pwn.chal.csaw.io 1002
+
+[small_boi](pwn/small_boi/small_boi)
+
+At only 4.8KiB and statically linked, this binary is very similar. We are only
+given 4 functions:
+
+- `sub_40017c` :: `syscall(15)`
+- `sub_40018a` :: `pop rax; ret`
+- `sub_40018c` :: `char buf[0x20]; read(0, buf, 0x200)`
+- `_start` :: `sub_40018c(); exit(0);`
+
+So we have an obvious buffer overflow in `sub_40018c`, but NX is on so we can't
+execute shellcode, there is no libc to return into, and there only seem to be 2
+or 3 gadgets in the executable. Interested what `sigreturn()` is I decided to
+consult its man page:
+
+> sigreturn,  rt_sigreturn - return from signal handler and cleanup stack frame
+
+Turns out, this syscall enables an entire variant of ROP:
+[SROP](https://en.wikipedia.org/wiki/Sigreturn-oriented_programming). All you
+need is a `pop rax; ret` gadget and a single `syscall` instruction literally
+anywhere in executable memory (or even better, a `mov eax, 15; syscall` as the
+author has given us). This enables us to call `sigreturn`, which lets us set any
+of the general purpose registers (`r{a,b,c,d}x`, `r{d,s}i`, `r8..r15`), stack
+registers (`r{s,b}p`), and most importantly `rip` (`eflags` and `cs` can also be
+set using a `sigreturn`).
+
+Using this we can construct a call to `execve("/bin/sh", NULL, NULL)`, giving us
+a shell. Simple, we'll place `"/bin/sh"` on the stack in the buffer-overflowing
+`read()` call, et voilà! Oh wait, ASLR... we can't find a reliable stack
+address. Well, turns out the challenge writer has given us exactly one string in
+`.rodata`: `"/bin/sh"`!
+
+See [sol.py](pwn/small_boi/sol.py) for the full solution.
