@@ -4,6 +4,7 @@
 *.py[cow]
 __pycache__
 venv
+.mypy_cache
 
 a.out
 
