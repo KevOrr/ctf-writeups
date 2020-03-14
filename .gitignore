@@ -7,4 +7,9 @@ venv
 
 a.out
 
+.gdb_history
+peda-session*.txt
+
 *.fasl
+
+.stack-work
