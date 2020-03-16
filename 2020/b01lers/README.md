@@ -9,8 +9,8 @@ challenges, and solve two of those.
 
 > Dave ruined the code for the DFV starship registry system. Please help fix it.
 >
-> `nc pwn.ctf.b01lers.com 1001`
-> [dfv](dfv/dfv)
+> `nc pwn.ctf.b01lers.com 1001`  
+> [dfv](dfv/dfv)  
 > Author: nsnc
 
 This is appears to be a simple keygen/reversing challenge:
