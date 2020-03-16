@@ -28,7 +28,7 @@ def spiral_times(center: int) -> Generator[int, None, None]:
 def next_sale(p: pwn.tube) -> int:
     pattern = re.compile(br'Meshuggah-(\d+)\n')
     s = p.recvregex(pattern)
-    if ((match := pattern.search(s)) and (sale := match.group(1))):
+    if (match := pattern.search(s)) and (sale := match.group(1)):
         return int(sale)
     else:
         raise ValueError('No match')
